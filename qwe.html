@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Система управления освещением</title>
+<meta charset="utf-8" />
+
+ <style type="text/css">    
+           * { margin: 0; padding: 0; }
+           p { padding: 10px; }
+           #left { position: absolute; left: 0; top: 0; width: 30%; }
+           #right { position: absolute; right: 0; top: 0; width: 70%; } 
+        </style>
+		
+
+<!<div style="margin: 10px; width: 150px; padding: 10px; border: 1px solid black;" </div>		
+
+<table border="1" width="160" style="border-collapse: collapse; position: relative; left: 40px; top: 70px">
+<div id="left"></p>
+<tr><td><div style="position: relative; left: 60px; " > Кухня  </div>
+<div id="playground-value1"><input type="range" min="0" max="100" value="100" id="playground-value-input1" style="position: relative; left: 15px" ></div>
+<div id="playground-code1"><span id="playground-code-value1" style="position: relative; left: 65px; top: -15px" >100%</span></div>
+<tr><td><div style="position: relative; left: 50px" > Гостиная </div>
+<div id="playground-value2"><input type="range" min="0" max="100" value="100" id="playground-value-input2" style="position: relative; left: 15px" ></div>
+<div id="playground-code2"><span id="playground-code-value2" style="position: relative; left: 65px; top: -15px" >100%</span>
+<tr><td><div style="position: relative; left: 52px" > Комната </div>
+<div id="playground-value3"><input type="range" min="0" max="100" value="100" id="playground-value-input3" style="position: relative; left: 15px" ></div>
+<div id="playground-code3"><span id="playground-code-value3" style="position: relative; left: 65px; top: -15px" >100%</span>
+<tr><td><div style="position: relative; left: 52px" > Санузел </div>
+<input class="l" type="checkbox" id="check1" checked style="position: relative; left: 32px"  >
+<tr><td><div style="position: relative; left: 47px" >  Прихожая </div>
+<input class="l" type="checkbox" id="check2" checked style="position: relative; left: 32px"  >
+</table>
+<div id="right">
+   <img src="План.png" style="position: absolute; top: 0px; left: 0px" />
+   <img src="кухня.png" style="position: absolute; top: 0px; left: 0px" id="playground-property1" />
+   <img src="гостиная.png" style="position: absolute; top: 0px; left: 0px" id="playground-property2" />
+   <img src="комната.png" style="position: absolute; top: 0px; left: 0px" id="playground-property3" />
+   <img src="санузел.png" style="position: absolute; top: 0px; left: 0px" id="playground-property4" />
+   <img src="прихожая.png" style="position: absolute; top: 0px; left: 0px" id="playground-property5" />  
+
+
+<style>
+.left {
+	position: relative;
+	left: 15px;
+	}
+</style>
+
+
+
+<style>
+*, *:before, *:after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body, input {
+	line-height: 2.5;
+}
+
+
+.l {
+	background-color: rgba(0,0,0,0.7);
+	border-radius: 0.75em;
+	box-shadow: 0.15em 0.15em 0 0.15em rgba(0,0,0,0.3) inset;
+	color: #fdea7b;
+	font-size: 2em;
+	display: inline-flex;
+	align-items: center;
+	margin: auto;
+	padding: 0.15em;
+	width: 3em;
+	height: 1.5em;
+	transition: background-color 0.1s 0.3s ease-out, box-shadow 0.1s 0.3s ease-out;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+.l:before, .l:after {
+	content: "";
+	display: block;
+}
+.l:before {
+	background-color: #d7d7d7;
+	border-radius: 50%;
+	width: 1.2em;
+	height: 1.2em;
+	transition: background-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+	z-index: 1;
+}
+.l:after {
+	background:
+		linear-gradient(transparent 50%, rgba(0,0,0,0.15) 0) 0 50% / 50% 100%,
+		repeating-linear-gradient(90deg,#bbb 0,#bbb,#bbb 20%,#999 20%,#999 40%) 0 50% / 50% 100%,
+		radial-gradient(circle at 50% 50%,#888 25%, transparent 26%);
+	background-repeat: no-repeat;
+	border: 0.25em solid transparent;
+	border-left: 0.4em solid #d8d8d8;
+	border-right: 0 solid transparent;
+	transition: border-left-color 0.1s 0.3s ease-out, transform 0.3s ease-out;
+	transform: translateX(-22.5%);
+	transform-origin: 25% 50%;
+	width: 1.2em;
+	height: 1em;
+}
+
+.l:checked:before {
+	background-color: currentColor;
+	transform: translateX(125%)
+}
+.l:checked:after {
+	border-left-color: currentColor;
+	transform: translateX(-2.5%) rotateY(180deg);
+}
+/* Other States */
+.l:focus {
+	/* Usually an anti-A11Y practice but set to remove an annoyance just for this demo */
+	outline: 0;
+}
+</style>
+
+
+
+<script>
+var qwe = document.querySelectorAll('#check1');
+function changeHandler(event) {
+var px = (this.value == 0) ? '' : '%';
+if( document.getElementById("check1").checked == true)
+{document.getElementById('playground-property4').style.filter = 'brightness(100%)';
+document.getElementById('playground-code-value4').innerText = 0;
+}
+else{
+document.getElementById('playground-property4').style.filter = 'brightness(0%)';
+document.getElementById('playground-code-value4').innerText = 0;
+}
+}
+Array.prototype.forEach.call(qwe, function(qwe) {
+qwe.addEventListener('input', changeHandler);
+});
+
+</script>
+<script>
+var q = document.querySelectorAll('#check2');
+function changeHandler(event) {
+var px = (this.value == 0) ? '' : '%';
+if( document.getElementById("check2").checked == true)
+{document.getElementById('playground-property5').style.filter = 'brightness(100%)';
+document.getElementById('playground-code-value5').innerText = 0;
+}
+else{
+document.getElementById('playground-property5').style.filter = 'brightness(0%)';
+document.getElementById('playground-code-value5').innerText = 0;
+}
+}
+Array.prototype.forEach.call(q, function(q) {
+q.addEventListener('input', changeHandler);
+});
+
+</script>
+
+<script>
+var range = document.querySelectorAll('#playground-value-input1');
+function changeHandler(event) {
+var px = (this.value == 0) ? '' : '%';
+document.getElementById('playground-property1').style.filter = 'brightness(' + this.value + '%)';
+if(this.value == 0)
+{
+document.getElementById('playground-code-value1').innerText = 'Off';
+}
+else{
+document.getElementById('playground-code-value1').innerText = this.value + px;
+}
+}
+Array.prototype.forEach.call(range, function(range) {
+range.addEventListener('input', changeHandler);
+});
+
+</script>
+
+<script>
+var range = document.querySelectorAll('#playground-value-input2');
+function changeHandler(event) {
+var px = (this.value == 0) ? '' : '%';
+document.getElementById('playground-property2').style.filter = 'brightness(' + this.value + '%)';
+if(this.value == 0)
+{
+document.getElementById('playground-code-value2').innerText = 'Off';
+}
+else{
+document.getElementById('playground-code-value2').innerText = this.value + px;
+}
+}
+Array.prototype.forEach.call(range, function(range) {
+range.addEventListener('input', changeHandler);
+});
+
+</script>
+<script>
+var range = document.querySelectorAll('#playground-value-input3');
+function changeHandler(event) {
+var px = (this.value == 0) ? '' : '%';
+document.getElementById('playground-property3').style.filter = 'brightness(' + this.value + '%)';
+if(this.value == 0)
+{
+document.getElementById('playground-code-value3').innerText = 'Off';
+}
+else{
+document.getElementById('playground-code-value3').innerText = this.value + px;
+}
+}
+Array.prototype.forEach.call(range, function(range) {
+range.addEventListener('input', changeHandler);
+});
+
+</script>
+
+</body>
+</html>
